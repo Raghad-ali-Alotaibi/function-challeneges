@@ -6,21 +6,28 @@ namespace FunctionChallenges
     {
         static void StringNumberProcessor(params object[] inputs)
         {
-            string concatenatedString = "";
-            int sum = 0;
+            List<string> strings = new List<string>();
+            List<int> Numbers = new List<int>();
 
+            // check inputs is a string or number
             foreach (var input in inputs)
             {
                 if (input is string)
                 {
-                    concatenatedString += input + " ";
+                    strings.Add((string)input);
                 }
                 else if (input is int)
                 {
-                    sum += (int)input;
+                    Numbers.Add((int)input);
                 }
             }
-            Console.WriteLine(concatenatedString.Trim() + "; " + sum);
+            int sum = 0;
+            foreach (int num in Numbers)
+            {
+                sum += num;
+            }
+            string result = string.Join(" ", strings) + "; " + sum;
+            Console.WriteLine(result);
         }
 
         static void Main(string[] args)
@@ -61,3 +68,9 @@ namespace FunctionChallenges
         }
     }
 }
+
+
+
+
+
+
