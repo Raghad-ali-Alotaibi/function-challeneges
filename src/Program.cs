@@ -1,9 +1,11 @@
 using System;
+using System.Globalization;
 
 namespace FunctionChallenges
 {
     class Program
     {
+        // Challenge 1: String and Number Processor
         static void StringNumberProcessor(params object[] inputs)
         {
             List<string> strings = new List<string>();
@@ -29,6 +31,73 @@ namespace FunctionChallenges
             string result = string.Join(" ", strings) + "; " + sum;
             Console.WriteLine(result);
         }
+
+        // Challenge 2: Object Swapper
+
+
+        // Challenge 3: Guessing Game
+        static void GuessingGame()
+        {
+            Random random = new Random();
+            int numberToGuess = random.Next(1, 101);
+            int userGuess = 0;
+            Console.WriteLine("Guess a number between 1 and 100 or enter 'Quit' to exit.");
+
+            try
+            {
+                while (true)
+                {
+                    Console.WriteLine("Enter your guess: ");
+                    string input = Console.ReadLine() ?? "";
+
+                    if (input.ToLower() == "quit")
+                    {
+                        Console.WriteLine("Game is terminated");
+                        break;
+                    }
+
+                    if (!int.TryParse(input, out userGuess))
+                    {
+                        Console.WriteLine("Invalid input. Please enter a valid number or 'Quit'.");
+                        continue;
+                    }
+
+                    if (userGuess > numberToGuess)
+                    {
+                        Console.WriteLine("Too high! Try again.");
+                    }
+                    else if (userGuess < numberToGuess)
+                    {
+                        Console.WriteLine("Too low! Try again.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Congratulations! You guessed the number correctly: " + numberToGuess);
+                        break;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("The Exception : " + e.Message);
+            }
+        }
+
+        // Challenge 4: Simple Word Reversal
+        public static string ReverseWords(string sentence)
+        {
+            string[] words = sentence.Split(' ');
+            string reversedSentence = "";
+
+            foreach (string word in words)
+            {
+                char[] wordChars = word.ToCharArray();
+                Array.Reverse(wordChars);
+                reversedSentence += new string(wordChars) + " ";
+            }
+            return reversedSentence.Trim();
+        }
+
 
         static void Main(string[] args)
         {
@@ -56,21 +125,14 @@ namespace FunctionChallenges
             // Console.WriteLine($"Strings: {str1}, {str2}");
 
             // Challenge 3: Guessing Game
-            // Console.WriteLine("\nChallenge 3: Guessing Game");
-            // Uncomment to test the GuessingGame method
-            // GuessingGame(); // Expected outcome: User input until the correct number is guessed or user inputs `Quit`
+            Console.WriteLine("\nChallenge 3: Guessing Game");
+            GuessingGame(); // Expected outcome: User input until the correct number is guessed or user inputs `Quit`
 
             // Challenge 4: Simple Word Reversal
-            // Console.WriteLine("\nChallenge 4: Simple Word Reversal");
-            // string sentence = "This is the original sentence!";
-            // string reversed = ReverseWords(sentence);
-            // Console.WriteLine(reversed); // Expected outcome: "sihT si eht lanigiro !ecnetnes"
+            Console.WriteLine("\nChallenge 4: Simple Word Reversal");
+            string sentence = "This is the original sentence!";
+            string reversed = ReverseWords(sentence);
+            Console.WriteLine(reversed); // Expected outcome: "sihT si eht lanigiro !ecnetnes"
         }
     }
 }
-
-
-
-
-
-
